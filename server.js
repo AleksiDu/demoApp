@@ -27,7 +27,7 @@ app.get('/messages', (req, res) => {
 app.post('/messages', (req, res) => {
 
     let message = new Message(req.body)
-    message.save().then(() => {
+    message.save().then(() => {             //Promises
         console.log("saved");
         return Message.findOne({ message: 'mda' });
     })

@@ -9,21 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
-<<<<<<< HEAD
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
-    <title>demoAppChat</title>
-</head>
-
-<body class="container">
-    <div class="container">
-        <br>
-        <div class="jumbotron">
-            <h1 class="" display-4>Send Message</h1>
-            <br>
-            <input class="from-control" placeholder="Name">
-=======
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
@@ -41,7 +26,6 @@
             <input id="name" class="form-control" placeholder="Name">
             <br>
             <textarea id="message" class="form-control" placeholder="Message"></textarea>
->>>>>>> 171b9c4491c9b09d3fb4590411b1bb5782eccaa9
             <br>
             <button id="send" class="btn btn-success">Send</button>
         </div>
@@ -49,10 +33,7 @@
 
         </div>
     </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 171b9c4491c9b09d3fb4590411b1bb5782eccaa9
 </body>
 <script>
     let socket = io();
@@ -78,18 +59,6 @@
 
     function postMessages(message) {
         $.post("http://localhost:3000/messages", message);
-    }
-</script>
-
-<script>
-    $(() => {
-        $("#send").click(() => {
-            addMessages({ name: 'Aleksi', message: 'Hello' })
-        })
-    })
-
-    function addMessages(message) {
-        $("messages").append(`<h4> ${message.name} </h4> <p> ${message.message}`)
     }
 </script>
 

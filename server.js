@@ -11,6 +11,8 @@ app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+mongoose.Promise = Promise;
+
 const Message = mongoose.model("MEssage", {
     name: String,
     message: String
@@ -25,23 +27,23 @@ app.get('/messages', (req, res) => {
 app.post('/messages', (req, res) => {
 
     let message = new Message(req.body)
-    message.save((err) => {
-        if (err) sendStatus(500);
-
-        Message.findOne({ message: 'mda' }, (err, censored) => {
+    message.save().then(() => {
+        console.log("saved");
+        return Message.findOne({ message: 'mda' });
+    })
+        .then(censored => {
             if (censored) {
                 console.log('censored words found', censored);
-                Message.remove({ _id: censored.id }, (err) => {
-                    console.log('removed censored message');
-                });
+                return Message.remove({ _id: censored.id });
             }
+            io.emit('message', req.body)
+            res.sendStatus(200);
         })
-
-        io.emit('message', req.body)
-        res.sendStatus(200);
-    })
+        .catch((err) => {
+            res.sendStatus(500);
+            return console.error(err);
+        })
 })
-
 io.on('connection', (socket) => {
     console.log("a user connected");
 })
